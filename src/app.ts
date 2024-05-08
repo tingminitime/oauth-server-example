@@ -1,5 +1,6 @@
 import fastify from 'fastify'
-import router from './router.ts'
+// import router from './router.ts'
+import { registerRoutes } from './app.routes.ts'
 
 const envToLogger = {
   development: {
@@ -23,6 +24,7 @@ app.setNotFoundHandler((_request, reply) => {
   reply.code(404).send({ message: 'Not Found' })
 })
 
-app.register(router)
+// app.register(router)
+await registerRoutes(app)
 
 export default app
