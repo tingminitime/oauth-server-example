@@ -20,6 +20,6 @@ export async function registerRoutes(app: FastifyInstance) {
     app.register((app, _opts, done) => {
       route.setRoutes(app)
       done()
-    })
+    }, { prefix: '/api' })
   }
 }

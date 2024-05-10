@@ -1,4 +1,4 @@
-# Fastify & Typescript App
+# Fastify & TypeScript App
 
 > Fastify & TypeScript starter repository.
 
@@ -11,14 +11,8 @@
 
 ### Development
 ```bash
-# Required: typescript watch compilation
-$ pnpm watch
-
 # Required: development server with hot reload (nodemon)
 $ pnpm dev
-
-# Format with prettier
-$ pnpm format
 ```
 
 ### Production

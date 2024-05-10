@@ -7,7 +7,26 @@ const HelloRoute: Route = {
   setRoutes(app: FastifyInstance): void {
     app.get(
       '/hello',
-      { schema: { querystring: HelloSchema } },
+      {
+        schema: {
+          querystring: HelloSchema,
+          response: {
+            200: {
+              properties: {
+                success: { type: 'boolean' },
+                message: { type: 'string' },
+              },
+              required: ['success'],
+            },
+          },
+        },
+      },
+      HelloController.helloGet,
+    )
+
+    app.get(
+      '/hello/:name',
+      { schema: { params: HelloSchema } },
       HelloController.helloGet,
     )
 

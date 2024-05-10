@@ -8,10 +8,13 @@
   "scripts": {
     "watch": "tsc --watch --preserveWatchOutput --pretty",
     "dev": "cross-env NODE_ENV=development nodemon",
-    "build": "rimraf dist && tsc",
-    "start": "node dist/index.js"
+    "build": "rimraf dist && tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "test": "vitest run"
   },
   "dependencies": {
+    "@fastify/type-provider-typebox": "^4.0.0",
+    "@sinclair/typebox": "^0.32.29",
     "fastify": "^4.27.0",
     "glob": "^10.3.12"
   },
@@ -27,6 +30,7 @@
     "ts-essentials": "^10.0.0",
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.9.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   }
 }
