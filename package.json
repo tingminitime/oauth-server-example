@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "fastify": "^4.27.0",
-    "glob": "^10.3.12"
+    "glob": "^10.3.14"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.16.3",
