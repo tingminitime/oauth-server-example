@@ -1,9 +1,17 @@
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import app from '../app.ts'
 
+/**
+ * @see https://github.com/fastify/fastify-autoload/issues/366
+ */
+
 describe('say hello', () => {
-  afterEach(() => {
-    app.close()
+  beforeEach(async () => {
+    app.ready()
+  })
+
+  afterEach(async () => {
+    await app.close()
   })
 
   it('get /api/hello', async () => {
@@ -11,6 +19,8 @@ describe('say hello', () => {
       method: 'GET',
       url: '/api/hello',
     })
+
+    console.log('response:', response)
 
     expect(response.statusCode).toBe(200)
     expect(response.json()).toEqual({

@@ -21,7 +21,7 @@ const envToLogger = {
   test: false,
 }
 
-const app = fastify({
+const app = await fastify({
   logger: envToLogger[process.env.NODE_ENV] ?? true,
   ignoreTrailingSlash: true,
 }).withTypeProvider<TypeBoxTypeProvider>()
