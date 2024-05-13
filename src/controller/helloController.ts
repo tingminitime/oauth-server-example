@@ -1,51 +1,46 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 
-export const HelloController = {
-  helloGet(
-    req: FastifyRequest<{ Querystring: { name?: string }, Params: { name?: string } }>,
-    reply: FastifyReply,
-  ): void {
-    if (req.query.name) {
-      req.log.info('Hello, %s', req.query.name)
-      reply.send({
-        success: true,
-        message: `Hello, ${req.query.name}`,
-      })
-    }
-
-    if (req.params.name) {
-      req.log.info('Hello, %s', req.params.name)
-      reply.send({
-        success: true,
-        message: `Hello, ${req.params.name}`,
-      })
-    }
-
-    reply.send({
+function getHello(
+  req: FastifyRequest<{ Querystring: { name?: string }, Params: { name?: string } }>,
+  reply: FastifyReply,
+): void {
+  if (req.query.name) {
+    req.log.info('Hello, %s', req.query.name)
+    reply.code(200).send({
       success: true,
-      message: 'Hello, stranger!',
+      message: `Hello, ${req.query.name}`,
     })
-  },
 
-  helloGetByParam(
-    req: FastifyRequest<{ Params: { name?: string } }>,
-    reply: FastifyReply,
-  ): void {
+    return
+  }
+
+  if (req.params.name) {
     req.log.info('Hello, %s', req.params.name)
-
-    reply.send({
+    reply.code(200).send({
       success: true,
-      message: `Hello, ${req.params.name ?? 'stranger'}`,
+      message: `Hello, ${req.params.name}`,
     })
-  },
 
-  helloPost(
-    req: FastifyRequest<{ Body: { name?: string } }>,
-    reply: FastifyReply,
-  ): void {
-    reply.send({
-      success: true,
-      message: `Hello, ${req.body.name ?? 'stranger'}`,
-    })
-  },
+    return
+  }
+
+  reply.code(200).send({
+    success: true,
+    message: 'Hello, stranger!',
+  })
+}
+
+function postHello(
+  req: FastifyRequest<{ Body: { name?: string } }>,
+  reply: FastifyReply,
+): void {
+  reply.code(201).send({
+    success: true,
+    message: `Hello, ${req.body.name ?? 'stranger'}`,
+  })
+}
+
+export const AutoHelloController = {
+  getHello,
+  postHello,
 }

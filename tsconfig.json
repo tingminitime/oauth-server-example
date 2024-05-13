@@ -27,5 +27,8 @@
     "node_modules",
     "dist",
     "eslint.config.js"
-  ]
+  ],
+  "ts-node": {
+    "esm": true
+  }
 }
