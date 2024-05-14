@@ -1,5 +1,11 @@
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
-  test: {},
+  test: {
+    server: {
+      deps: {
+        inline: ['@fastify/autoload'],
+      },
+    },
+  },
 })

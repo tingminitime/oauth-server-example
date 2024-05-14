@@ -7,7 +7,7 @@ import app from '../app.ts'
 
 describe('say hello', () => {
   beforeEach(async () => {
-    app.ready()
+    await app.ready()
   })
 
   afterEach(async () => {
@@ -19,8 +19,6 @@ describe('say hello', () => {
       method: 'GET',
       url: '/api/hello',
     })
-
-    console.log('response:', response)
 
     expect(response.statusCode).toBe(200)
     expect(response.json()).toEqual({
