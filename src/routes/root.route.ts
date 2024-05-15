@@ -1,5 +1,5 @@
 import type { FastifyPluginAsync } from 'fastify'
-import { IndexController } from '../controller/indexController.ts'
+import { IndexController } from '../controllers/index.controller.ts'
 
 const RootRoute: FastifyPluginAsync = async (fastify, _opts): Promise<void> => {
   fastify.get(

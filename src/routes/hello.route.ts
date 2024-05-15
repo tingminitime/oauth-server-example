@@ -1,5 +1,5 @@
 import type { FastifyPluginAsync } from 'fastify'
-import { AutoHelloController } from '../controller/helloController.ts'
+import { AutoHelloController } from '../controllers/hello.controller.ts'
 import { HelloSchema } from '../schemas/hello.schema.ts'
 import { BasicResponseSchema } from '../schemas/response.schema.ts'
 
