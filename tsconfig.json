@@ -7,6 +7,14 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./globals.d.ts"
+    ],
     "allowImportingTsExtensions": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
@@ -21,7 +29,8 @@
     "esModuleInterop": true
   },
   "include": [
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "./globals.d.ts"
   ],
   "exclude": [
     "node_modules",

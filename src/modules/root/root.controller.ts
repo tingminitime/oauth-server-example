@@ -8,7 +8,7 @@ async function getIndex(
   req: FastifyRequest,
   reply: FastifyReply,
 ): Promise<void> {
-  const indexHtmlPath = fileURLToPath(new URL('../../static/index.html', import.meta.url))
+  const indexHtmlPath = fileURLToPath(new URL('../../../static/index.html', import.meta.url))
 
   const indexHtmlContent = await readFile(indexHtmlPath)
   reply
@@ -16,6 +16,6 @@ async function getIndex(
     .send(indexHtmlContent)
 }
 
-export const IndexController = {
+export const RootController = {
   getIndex,
 }

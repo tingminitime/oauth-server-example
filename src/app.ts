@@ -1,11 +1,8 @@
-import { fileURLToPath } from 'node:url'
-import { dirname, join } from 'node:path'
 import fastify from 'fastify'
-import autoLoad from '@fastify/autoload'
-import cors from '@fastify/cors'
-import cookie from '@fastify/cookie'
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
-import type { FastifyCookieOptions } from '@fastify/cookie'
+import { registerCorsProvider } from './providers/cors.ts'
+import { registerCookieProvider } from './providers/cookie.ts'
+import { registerAutoloadProvider } from './providers/autoload.ts'
 
 /**
  * Load environment variables from the `.env` file
@@ -35,38 +32,11 @@ const app = await fastify({
 }).withTypeProvider<TypeBoxTypeProvider>()
 
 /**
- * Cookie configuration
+ * Register providers
  */
-app.register(cookie, {
-  secret: process.env.COOKIE_SECRET,
-  parseOptions: {
-    maxAge: 60 * 60 * 24 * 7,
-    httpOnly: true,
-  },
-} as FastifyCookieOptions)
-
-/**
- * CORS configuration
- */
-app.register(cors, {
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept'],
-  credentials: true,
-})
-
-/**
- * Register all routes in the `routes` directory
- *
- * @see https://github.com/fastify/fastify-autoload
- */
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-app.register(autoLoad, {
-  dir: join(__dirname, 'routes'),
-  options: { prefix: '/api' },
-})
+registerCookieProvider(app) // Cookie
+registerCorsProvider(app) // Cors
+registerAutoloadProvider(app) // Autoload
 
 /**
  * Error handler

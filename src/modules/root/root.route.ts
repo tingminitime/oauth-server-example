@@ -1,11 +1,12 @@
 import type { FastifyPluginAsync } from 'fastify'
-import { IndexController } from '../controllers/index.controller.ts'
+import { RootController } from './root.controller.ts'
 
 const RootRoute: FastifyPluginAsync = async (fastify, _opts): Promise<void> => {
   fastify.get(
     '/',
-    IndexController.getIndex,
+    RootController.getIndex,
   )
 }
 
+export const prefixOverride = '/api'
 export default RootRoute

@@ -1,5 +1,5 @@
 import type { FastifyPluginAsync } from 'fastify'
-import { AuthController } from '../controllers/auth.controller.ts'
+import { AuthController } from './auth.controller.ts'
 
 const AuthRoute: FastifyPluginAsync = async (fastify, _opts): Promise<void> => {
   fastify.get(

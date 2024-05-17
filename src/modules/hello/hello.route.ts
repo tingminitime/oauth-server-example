@@ -1,7 +1,7 @@
 import type { FastifyPluginAsync } from 'fastify'
-import { AutoHelloController } from '../controllers/hello.controller.ts'
-import { HelloSchema } from '../schemas/hello.schema.ts'
-import { BasicResponseSchema } from '../schemas/response.schema.ts'
+import { AutoHelloController } from './hello.controller.ts'
+import { HelloSchema } from './hello.schema.ts'
+import { BasicResponseSchema } from '@/shared/schemas/response.schema.ts'
 
 const HelloRoute: FastifyPluginAsync = async (fastify, _opts): Promise<void> => {
   fastify.get(
