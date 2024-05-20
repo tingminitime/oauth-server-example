@@ -1,23 +1,39 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
+import app from '@/app.ts'
 
 function google(
   req: FastifyRequest,
   reply: FastifyReply,
-): void {
-  reply.code(200).send({
-    success: true,
-    message: 'Google login',
-  })
+) {
+  app.GoogleOAuth2.generateAuthorizationUri(
+    req,
+    reply,
+    (err, authorizationEndpoint) => {
+      if (err)
+        console.error(err)
+      reply.redirect(authorizationEndpoint)
+    },
+  )
 }
 
-function googleCallback(
+async function googleCallback(
   req: FastifyRequest,
   reply: FastifyReply,
-): void {
-  reply.code(200).send({
-    success: true,
-    message: 'Google callback',
-  })
+) {
+  try {
+    const { token } = await app.GoogleOAuth2.getAccessTokenFromAuthorizationCodeFlow(req)
+
+    reply
+      .setCookie('access_token', token.access_token)
+      .redirect(`${process.env.FRONTEND_HOST}/member`)
+  }
+  catch (err) {
+    console.error(err)
+    reply.send({
+      success: false,
+      message: 'Failed to authenticate',
+    })
+  }
 }
 
 export const AuthController = {

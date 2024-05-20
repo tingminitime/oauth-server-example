@@ -5,8 +5,12 @@ import type { FastifyCookieOptions } from '@fastify/cookie'
 const cookieOptions: FastifyCookieOptions = {
   secret: process.env.COOKIE_SECRET,
   parseOptions: {
-    maxAge: 60 * 60 * 24 * 7,
+    domain: 'localhost',
+    path: '/',
+    maxAge: 60 * 60 * 24 * 1,
     httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
   },
 }
 

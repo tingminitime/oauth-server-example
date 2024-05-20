@@ -13,7 +13,7 @@
     },
     "typeRoots": [
       "./node_modules/@types",
-      "./globals.d.ts"
+      "./src/types/globals.d.ts"
     ],
     "allowImportingTsExtensions": true,
     "strictFunctionTypes": true,
@@ -30,7 +30,7 @@
   },
   "include": [
     "./src/**/*.ts",
-    "./globals.d.ts"
+    "./src/types/*.d.ts"
   ],
   "exclude": [
     "node_modules",

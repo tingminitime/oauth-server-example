@@ -14,9 +14,11 @@ export function registerAutoloadProvider(app: FastifyInstance) {
 
   app.register(autoLoad, {
     dir: join(__dirname, '../modules/'),
-    // indexPattern: /^.*\.route(?:\.ts|\.js|\.cjs|\.mjs)$/,
+    dirNameRoutePrefix: false,
     routeParams: true,
+    indexPattern: /^.*\.route(?:\.ts|\.js|\.cjs|\.mjs)$/,
     matchFilter: path => path.endsWith('.route.ts'),
+    ignorePattern: /^.*(?:test|spec|).ts$/,
     options: { prefix: '/api' },
   })
 }
