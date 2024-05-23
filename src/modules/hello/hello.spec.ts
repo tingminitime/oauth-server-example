@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
-import app from '../app.ts'
+import app from '@/app.ts'
 
 /**
  * @see https://github.com/fastify/fastify-autoload/issues/366

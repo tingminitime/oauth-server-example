@@ -7,5 +7,8 @@ export default defineConfig({
         inline: ['@fastify/autoload'],
       },
     },
+    alias: {
+      '@': new URL('./src/', import.meta.url).pathname,
+    },
   },
 })
